@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/controllers/routes.ts"],"version":"5.9.3"}
+{"root":["./src/index.ts","./src/controllers/featureController.ts","./src/controllers/routes.ts","./src/errors/index.ts","./src/utils/index.ts","./apiTypes.d.ts"],"version":"5.9.3"}

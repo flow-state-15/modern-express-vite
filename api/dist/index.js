@@ -1,16 +1,22 @@
 import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
 import morgan from "morgan";
-import routes from "./controllers/routes.js";
+// import utils
+import { getDistPath } from "./utils/index.js";
+// import routes
+import router from "./controllers/routes.js";
+// import errors
+import { genericServerError, spaFallback } from "./errors/index.js";
 const app = express();
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const distPath = path.resolve(__dirname, "../../frontend/dist");
-app.use(express.static(distPath));
-app.use(morgan("dev", { "immediate": true }));
+console.log(getDistPath());
+app.use(express.static(getDistPath()));
+app.use(morgan("dev"));
 app.use(express.json());
-app.use(routes);
+app.use("/api", router);
+// use SPA routing for non-api requests
+app.use(spaFallback);
+// catchall errors
+app.use(genericServerError);
+// start server
 app.listen(3000, () => {
     console.log("Server is running on port 3000");
 });

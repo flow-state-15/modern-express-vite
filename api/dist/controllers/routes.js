@@ -1,21 +1,21 @@
 import { Router } from "express";
-import path from "path";
-import { fileURLToPath } from "url";
-const routes = Router();
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const distPath = path.resolve(__dirname, "../../../frontend/dist");
-routes.get("/", (req, res) => {
-    console.log("new connection at root route");
-    res.sendFile(path.join(distPath, "index.html"));
+// import controllers
+import * as featureController from "./featureController.js";
+import { apiNotFound } from "../errors/index.js";
+const router = Router();
+// debug route
+// note this route is simple and does not use chaining
+router.get("/test", (req, res) => {
+    res.send("Hello World from /api/test");
 });
-routes.get("/test", (req, res) => {
-    res.send("Hello World");
-});
-routes.get("/path", (req, res) => {
-    console.log(path);
-    console.log("trying to send path");
-    res.json(path);
-});
-export default routes;
+// define api routes
+// route chaining for dev ergonomics
+router.route("/feature")
+    .get(featureController.handleFeature)
+    .post(featureController.handleFeature)
+    .put(featureController.handleFeature)
+    .delete(featureController.handleFeature);
+// handle 404
+router.use(apiNotFound);
+export default router;
 //# sourceMappingURL=routes.js.map
