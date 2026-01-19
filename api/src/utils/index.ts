@@ -1,6 +1,5 @@
 // uncategorized utility and multi-use functions
 
-// core deps
 import path from "path";
 import { fileURLToPath } from "url";
 

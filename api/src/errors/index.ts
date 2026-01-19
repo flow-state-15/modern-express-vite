@@ -1,10 +1,7 @@
 // catch-alls for generic error handling
 // organize and segregate for complex error handling scenarios
 
-// types
 import type { NextFunction, Request, Response } from "express";
-
-// core deps
 import path from "path";
 
 // import utils
