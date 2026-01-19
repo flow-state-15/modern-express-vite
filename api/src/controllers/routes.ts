@@ -3,6 +3,8 @@ import type { Request, Response } from "express";
 
 // import controllers
 import * as featureController from "./featureController.js";
+
+// import errors
 import { apiNotFound } from "../errors/index.js";
 
 const router = Router();

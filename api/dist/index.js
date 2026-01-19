@@ -4,16 +4,15 @@ import morgan from "morgan";
 import { getDistPath } from "./utils/index.js";
 // import routes
 import router from "./controllers/routes.js";
-// import errors
-import { genericServerError, spaFallback } from "./errors/index.js";
+// import error handlers
+import { spaFallback, genericServerError } from "./errors/index.js";
 const app = express();
-console.log(getDistPath());
-app.use(express.static(getDistPath()));
 app.use(morgan("dev"));
 app.use(express.json());
 app.use("/api", router);
+app.use(express.static(getDistPath()));
 // use SPA routing for non-api requests
-app.use(spaFallback);
+app.get(/^\/(?!api).*/, spaFallback);
 // catchall errors
 app.use(genericServerError);
 // start server

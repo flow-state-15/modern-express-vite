@@ -4,6 +4,6 @@
 import type { Request, Response, NextFunction } from "express";
 
 export function handleFeature(req: Request, res: Response, next: NextFunction) {
-  console.log("trying to do the thing!")
-  res.send("doing the thing!")
+  console.log("trying to do the thing!");
+  res.send("doing the thing!");
 }
