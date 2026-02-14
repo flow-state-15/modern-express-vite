@@ -27,6 +27,6 @@ app.use(genericServerError);
 
 if (process.env.NODE_ENV !== "test") {
   app.listen(3000, () => {
-    console.log("Server is running on port 3000");
+    console.log("Express API intiated and listening.");
   });
 }

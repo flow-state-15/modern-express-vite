@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: pg-db
+    restart: unless-stopped
+    env_file:
+      - .env.db.example
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d app"]
+      interval: 2s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    container_name: express-api
+    restart: unless-stopped
+    env_file:
+      - api/.env.api.example
+    ports:
+      - "${HOST_PORT}:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+

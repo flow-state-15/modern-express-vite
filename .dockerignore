@@ -1,0 +1,11 @@
+**/node_modules
+**/dist
+**/.cache
+.git
+.github
+**/.gitignore
+**/.eslint*
+**/coverage
+**/*.test.ts
+**/*.spec.ts
+.env
