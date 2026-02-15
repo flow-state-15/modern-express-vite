@@ -4,6 +4,9 @@ import morgan from "morgan";
 // import utils
 import { getDistPath } from "./utils/index.js";
 
+// import middleware
+import { createSessionMiddleware, loadSessionUser } from "./middleware/index.js";
+
 // import routes
 import router from "./controllers/routes.js";
 
@@ -16,10 +19,12 @@ const distPath = getDistPath();
 
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(createSessionMiddleware());
+app.use(loadSessionUser);
 app.use("/api", router);
 app.use(express.static(distPath));
 
-// use SPA routing for non-api requests
+// SPA routing for non-api requests
 app.get(/^\/(?!api).*/, spaFallback);
 
 // catchall errors

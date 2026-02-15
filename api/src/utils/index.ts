@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename);
  * This works regardless of whether we're running:
  *   - Source via tsx:  __dirname = api/src/utils
  *   - Compiled JS:     __dirname = api/dist/src/utils
- *   - Docker:          __dirname = /app/api/dist/src/utils
+ *   - Docker:          __dirname = /app/frontend/dist/src/utils
  *
  * In every case, the nearest package.json is at the api/ root,
  * and frontend/dist is always one level above that.

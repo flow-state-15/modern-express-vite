@@ -1,16 +1,7 @@
+// API-specific types that depend on Express internals.
+// These are NOT shared with the frontend.
+
 import type { Request, Response, NextFunction } from "express";
-
-export type ApiError = {
-  error: string;
-  code?: string;
-  details?: unknown;
-};
-
-export type ApiSuccess<T> = {
-  data: T;
-};
-
-export type ApiResponse<T> = ApiSuccess<T> | ApiError;
 
 export type ApiHandler<
   Params = Record<string, string>,

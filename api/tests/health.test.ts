@@ -1,6 +1,6 @@
 import request from "supertest";
 
-import { app } from "../src/index.js";
+import { app } from "../src/app.js";
 
 describe("api smoke", () => {
   it("responds to GET /api/test", async () => {
