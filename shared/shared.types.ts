@@ -1,6 +1,7 @@
-// Shared types between frontend and backend.
-// Import with `import type` — these are erased at compile time
-// and have no runtime cost.
+// Shared types between frontend and backend to prevent drift.
+// *Note: frontend/backend specific types do not belong here.
+
+// TODO: Split these domains into separate files when it gets crowded.
 
 // ─── Enums ───────────────────────────────────────────────
 
@@ -39,6 +40,15 @@ export type Profile = {
 export type UserWithProfile = User & {
   profile: Profile | null;
 };
+
+// ─── API Requests ─────────────────────────────────
+
+export type CreateUserInput = {
+  email: string;
+  password: string;
+  role: 'USER' | 'ADMIN';
+};
+
 
 // ─── API Responses ───────────────────────────────────
 

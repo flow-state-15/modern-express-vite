@@ -1,0 +1,23 @@
+.app-shell {
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 2rem 1rem;
+}
+
+main {
+  display: grid;
+  gap: 1rem;
+}
+
+form {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 360px;
+}
+
+pre {
+  border-radius: 8px;
+  overflow-x: auto;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.08);
+}

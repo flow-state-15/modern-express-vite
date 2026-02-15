@@ -1,0 +1,1 @@
+// *Note: Only common types not specific to any domain should be here.

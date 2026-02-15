@@ -5,7 +5,7 @@ import { prisma } from "../utils/db.js";
 const SALT_ROUNDS = 12;
 
 export async function register(req: Request, res: Response, next: NextFunction) {
-  const { email, password } = req.body;
+  const { email, password } = req.body;  
   if (!email || !password) {
     return res.status(400).json({ error: "Validation Error", details: { email: "Email and password are required" } });
   }
