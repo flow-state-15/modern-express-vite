@@ -5,19 +5,27 @@ import { prisma } from "../utils/db.js";
 
 // ─── Session middleware ──────────────────────────────────
 
+let sessionStore: InstanceType<ReturnType<typeof connectPgSimple>> | null = null;
+
 /**
  * Creates the session middleware with Postgres-backed store.
  * Returns a ready-to-use RequestHandler for app.use().
  */
 export function createSessionMiddleware(): RequestHandler {
+  const secret = process.env.SESSION_SECRET;
+  if (!secret) {
+    throw new Error("SESSION_SECRET must be set in environment");
+  }
+
   const PgStore = connectPgSimple(session);
+  sessionStore = new PgStore({
+    conString: process.env.DATABASE_URL,
+    createTableIfMissing: true,
+  });
 
   return session({
-    store: new PgStore({
-      conString: process.env.DATABASE_URL,
-      createTableIfMissing: true,
-    }),
-    secret: process.env.SESSION_SECRET || "dev-secret-change-me",
+    store: sessionStore,
+    secret,
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -27,6 +35,15 @@ export function createSessionMiddleware(): RequestHandler {
       sameSite: "lax",
     },
   });
+}
+
+/**
+ * Closes the session store's internal pg pool.
+ * Call during graceful shutdown or test teardown.
+ */
+export function closeSessionStore(): void {
+  sessionStore?.close();
+  sessionStore = null;
 }
 
 // ─── Global middleware ───────────────────────────────────

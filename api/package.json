@@ -8,7 +8,7 @@
     "start": "tsc -b && node dist/src/app.js",
     "dev": "tsc -b && nodemon --exec node dist/index.js",
     "build": "tsc -b",
-    "test": "npm run build && NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --config jest.config.cjs",
+    "test": "npm run build && NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --config jest.config.cjs --runInBand",
     "test:watch": "NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --watch --config jest.config.cjs"
   },
   "keywords": [],

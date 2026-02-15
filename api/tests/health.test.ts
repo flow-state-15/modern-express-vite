@@ -1,6 +1,11 @@
 import request from "supertest";
 
 import { app } from "../src/app.js";
+import { teardownAll } from "./teardown.js";
+
+afterAll(async () => {
+  await teardownAll();
+});
 
 describe("api smoke", () => {
   it("responds to GET /api/test", async () => {
