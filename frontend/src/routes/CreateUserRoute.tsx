@@ -6,6 +6,7 @@ import { useCreateUserMutation } from "../features/user/userQueries";
 
 export function CreateUserPage() {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [role, setRole] = useState<"USER" | "ADMIN">("USER");
   const createUserMutation = useCreateUserMutation();
   const navigate = useNavigate();
@@ -14,8 +15,9 @@ export function CreateUserPage() {
     event.preventDefault();
 
     // TODO: Add form validation and better UX for error handling.
-    const created = await createUserMutation.mutateAsync({ email, role });
-    navigate(`/users/${created.id}`);
+    const created = await createUserMutation.mutateAsync({ email, password, role });
+    // TODO: Verify no race condition here.
+    navigate(`/profiles/${created.id}`);
   };
 
   return (
@@ -29,6 +31,15 @@ export function CreateUserPage() {
           type="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
+          required
+        />
+
+        <label htmlFor="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
           required
         />
 

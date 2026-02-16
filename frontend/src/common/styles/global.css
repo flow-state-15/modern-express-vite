@@ -1,3 +1,10 @@
+/*
+  Template guidance (MUI-first):
+  - Keep this file minimal (resets + true globals only).
+  - Prefer MUI theme overrides and `sx` for component styling.
+  - UI-specific styling should live in the UI folder.
+*/
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -41,4 +48,28 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.app-shell {
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 2rem 1rem;
+}
+
+main {
+  display: grid;
+  gap: 1rem;
+}
+
+form {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 360px;
+}
+
+pre {
+  border-radius: 8px;
+  overflow-x: auto;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.08);
 }

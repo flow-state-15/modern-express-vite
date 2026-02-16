@@ -10,7 +10,7 @@ export function HomePage() {
         <Link to="/users/new">Create user</Link>
         {' | '}
         {/* TODO: Replace hardcoded ID with selected/authenticated user context. */}
-        <Link to="/users/demo-user-id">View demo profile</Link>
+        <Link to="/profiles/demo-user-id">View demo profile</Link>
       </nav>
     </main>
   );

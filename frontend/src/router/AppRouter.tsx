@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { CreateUserPage } from '../routes/CreateUserPage';
-import { HomePage } from '../routes/HomePage';
-import { UserProfilePage } from '../routes/UserProfilePage';
+import { CreateUserPage } from '../routes/CreateUserRoute';
+import { HomePage } from '../routes/HomeRoute';
+import { UserProfilePage } from '../routes/UserProfileRoute';
 
 export function AppRouter() {
   return (
